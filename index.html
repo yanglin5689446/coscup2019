@@ -9,28 +9,156 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reveal.min.css" integrity="sha256-OxiHrn+gXudPDHxTvXiQzeFjZU/FllSSPmOOYAZ1O/g=" crossorigin="anonymous" />    <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/theme/beige.min.css" integrity="sha256-z1DdgR7vTxqREAQ4/SJNzvbe6IvWaBQHAKWTNuMQ3jo=" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <style>
+      code { font-size: 1rem; }
+      .reveal .progress span {
+        background-color: #2979ff;
+      }
+    </style>
   </head>
   <body>
+
     <div class="reveal">
       <div class="slides">
-        <section>Hello world</section>
+        <section>
+          <h2>老司機帶你讀 redux 原始碼</h2>
+          <div>by 林子暘</div>
+        </section>
+        <section>自我介紹</section>
+        <section>免責聲明</section>
+        <section>期望收獲</section>
+        <section>
+          <section>所以什麼是 redux?</section>
+          <section>
+            <img src='https://imgur.com/grw7odu.png'/>
+          </section>
+          <section>
+            redux 架構圖
+          </section>
+          <section>
+            redux example code
+          </section>
+        </section>
+        <section>
+          <img src="https://imgur.com/vzs9XL9.png" alt="">
+          <a href="https://github.com/reduxjs/redux/tree/master/src">
+            https://github.com/reduxjs/redux/tree/master/src
+          </a>
+        </section>
+        <section>
+          <section>
+            index.js
+            <pre><code
+              data-trim
+              data-line-numbers
+              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/index.js'
+            >
+            </code></pre>
+          </section>
+        </section>
+        <section >
+          <section>
+            utils
+            <img src="https://imgur.com/EEfp3zS.png" alt="">
+          </section>
+          <section>
+            actionTypes.js
+            <pre><code
+              data-trim
+              data-line-numbers
+              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/utils/actionTypes.js'
+            >
+            </code></pre>
+          </section>
+          <section>
+            isPlainObject.js
+            <pre><code
+              data-trim
+              data-line-numbers
+              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/utils/isPlainObject.js'
+            >
+            </code></pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            createStore.js
+            <pre><code
+              data-trim
+              data-line-numbers
+              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/utils/isPlainObject.js'
+            >
+            </code></pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            applyMiddleware.js
+            <pre><code
+              data-trim
+              data-line-numbers
+              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/applyMiddleware.js'
+            >
+            </code></pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            bindActionCreators.js
+            <pre><code
+              data-trim
+              data-line-numbers
+              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/bindActionCreators.js'
+            >
+            </code></pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            combineReducers.js
+            <pre><code
+              data-trim
+              data-line-numbers
+              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/combineReducers.js'
+            >
+            </code></pre>
+          </section>
+        </section>
+
       </div>
     </div>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/js/reveal.min.js" integrity="sha256-pv4AarTAzSO6lz+bbMPwmV29XMjkzmFOn601b2pWqXE=" crossorigin="anonymous"></script>
     <script>
+      // load all code
+      (function loadCode () {
+        const codeElements = Array.from(document.querySelectorAll('code'))
+        codeElements.forEach(element => {
+          const url = element.getAttribute('data-url')
+          fetch(url)
+            .then(response => response.text())
+            .then(code => { element.innerHTML = code })
+        })
+      })()
+
       Reveal.initialize({
         history: true,
         pdfSeparateFragments: true,
-        allottedTime: 30 * 60 * 1000, // 12 minutes
-        // defaultTiming: 18, // seconds per slide
+        allottedTime: 30 * 60 * 1000, // 30 minutes
+        defaultTiming: 18, // seconds per slide
         // - (optional) height of page/time progress bar
-        // progressBarHeight: 5,
+        progressBarHeight: 10,
+        pausedBarColor: '#448aff',
         // - (optional) bar color
-        barColor: '#FF9800',
         dependencies: [
-          { src: 'plugins/elapsed-time-bar/elapsed-time-bar.js'}
+          { src: 'plugin/elapsed-time-bar/elapsed-time-bar.js'},
+          { src: 'plugin/highlight/highlight.js', async: true },
         ]
       });
+
     </script>
   </body>
 </html>
