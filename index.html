@@ -7,10 +7,11 @@
     <title>老司機帶你讀 redux 原始碼</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reveal.min.css" integrity="sha256-OxiHrn+gXudPDHxTvXiQzeFjZU/FllSSPmOOYAZ1O/g=" crossorigin="anonymous" />    <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/theme/beige.min.css" integrity="sha256-z1DdgR7vTxqREAQ4/SJNzvbe6IvWaBQHAKWTNuMQ3jo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/league.min.css" integrity="sha256-Alkh+MTa+O0kGOwB3aVd9pTxNB4itQ3QK1fqVuAvAYY=" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+
     <style>
       code { font-size: 1rem; }
       .reveal .progress span {
@@ -23,6 +24,7 @@
     <div class="reveal">
       <div class="slides">
         <section>
+          <img src="./qrcode.png" alt="">
           <h2>老司機帶你讀 redux 原始碼</h2>
           <div>by 林子暘</div>
         </section>
@@ -48,11 +50,29 @@
           </a>
         </section>
         <section>
-          <section>
+          <section  data-transition="slide-in none-out">
             index.js
             <pre><code
               data-trim
               data-line-numbers
+              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/index.js'
+            >
+            </code></pre>
+          </section>
+          <section data-transition="none">
+            index.js
+            <pre><code
+              data-trim
+              data-line-numbers='9-27'
+              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/index.js'
+            >
+            </code></pre>
+          </section>
+          <section data-transition="none">
+            index.js
+            <pre><code
+              data-trim
+              data-line-numbers='1-7,29-36'
               data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/index.js'
             >
             </code></pre>
