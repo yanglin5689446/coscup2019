@@ -53,29 +53,14 @@
           <section  data-transition="slide-in none-out">
             index.js
             <pre><code
+              id='src-index'
               data-trim
               data-line-numbers
               data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/index.js'
             >
             </code></pre>
-          </section>
-          <section data-transition="none">
-            index.js
-            <pre><code
-              data-trim
-              data-line-numbers='9-27'
-              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/index.js'
-            >
-            </code></pre>
-          </section>
-          <section data-transition="none">
-            index.js
-            <pre><code
-              data-trim
-              data-line-numbers='1-7,29-36'
-              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/index.js'
-            >
-            </code></pre>
+            <p class="fragment" data-code='src-index' data-line-numbers='9-27'></p>
+            <p class="fragment" data-code='src-index' data-line-numbers='1-7,29-36'></p>
           </section>
         </section>
         <section >
@@ -106,11 +91,20 @@
           <section>
             createStore.js
             <pre><code
+              id='createStore'
               data-trim
               data-line-numbers
               data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/createStore.js'
             >
             </code></pre>
+            <p class="fragment" data-code='createStore' data-line-numbers='31-64,281-292'></p>
+            <p class="fragment" data-code='createStore' data-line-numbers='66-77'></p>
+            <p class="fragment" data-code='createStore' data-line-numbers='79-94'></p>
+            <p class="fragment" data-code='createStore' data-line-numbers='96-156'></p>
+            <p class="fragment" data-code='createStore' data-line-numbers='158-216'></p>
+            <p class="fragment" data-code='createStore' data-line-numbers='218-240'></p>
+            <p class="fragment" data-code='createStore' data-line-numbers='242-279'></p>
+
           </section>
         </section>
         <section>
@@ -126,6 +120,23 @@
         </section>
         <section>
           <section>
+            combineReducers.js
+            <pre><code
+              id='combineReducers'
+              data-trim
+              data-line-numbers
+              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/combineReducers.js'
+            >
+            </code></pre>
+            <p class="fragment" data-code='createStore' data-line-numbers='115-180'></p>
+            <p class="fragment" data-code='createStore' data-line-numbers='5-15'></p>
+            <p class="fragment" data-code='createStore' data-line-numbers='17-63'></p>
+            <p class="fragment" data-code='createStore' data-line-numbers='65-97'></p>
+
+          </section>
+        </section>
+        <section>
+          <section>
             bindActionCreators.js
             <pre><code
               data-trim
@@ -135,22 +146,8 @@
             </code></pre>
           </section>
         </section>
-        <section>
-          <section>
-            combineReducers.js
-            <pre><code
-              data-trim
-              data-line-numbers
-              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/combineReducers.js'
-            >
-            </code></pre>
-          </section>
-        </section>
-
       </div>
     </div>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/js/reveal.min.js" integrity="sha256-pv4AarTAzSO6lz+bbMPwmV29XMjkzmFOn601b2pWqXE=" crossorigin="anonymous"></script>
     <script>
       // load all code
@@ -158,11 +155,39 @@
         const codeElements = Array.from(document.querySelectorAll('code'))
         codeElements.forEach(element => {
           const url = element.getAttribute('data-url')
+          const line = {
+            from: element.getAttribute('data-line-from'),
+            to: element.getAttribute('data-line-to'),
+          }
+
           fetch(url)
             .then(response => response.text())
-            .then(code => { element.innerHTML = code })
+            .then(code => {
+              if(line.from || line.to){
+                line.from = line.from && line.from - 1
+                line.to = line.to && line.to - 1
+                code = code.split("\n").slice(line.from, line.to).join('\n')
+              }
+              element.innerHTML = code
+            })
         })
       })()
+
+      Reveal.addEventListener('fragmentshown', ({ fragment }) => {
+        const code = fragment.getAttribute('data-code')
+        const lineNumbers = fragment.getAttribute('data-line-numbers')
+        if(code){
+          const codeElement = document.getElementById(code)
+          if(codeElement && lineNumbers){
+            codeElement.setAttribute('data-line-numbers', lineNumbers)
+            // reset highlight
+            Array.from(codeElement.querySelectorAll('table tr'))
+              .forEach(element => element.classList.remove('highlight-line'))
+            RevealHighlight.highlightLines(codeElement, lineNumbers)
+          }
+        }
+      })
+
 
       Reveal.initialize({
         history: true,
@@ -172,6 +197,7 @@
         // - (optional) height of page/time progress bar
         progressBarHeight: 10,
         pausedBarColor: '#448aff',
+        fragmentInURL: true,
         // - (optional) bar color
         dependencies: [
           { src: 'plugin/elapsed-time-bar/elapsed-time-bar.js'},
