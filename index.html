@@ -17,6 +17,18 @@
       .reveal .progress span {
         background-color: #2979ff;
       }
+      .text-left { text-align: left; }
+      .text-right { text-align: right; }
+      .text-center { text-align: center; }
+      .code-container {
+        transform-origin: 50%;
+        transform: scale(1.25);
+      }
+      code {
+        font-size: .75em;
+
+        line-height: 1.2em;
+      }
     </style>
   </head>
   <body>
@@ -29,8 +41,20 @@
           <div>by 林子暘</div>
         </section>
         <section>自我介紹</section>
-        <section>免責聲明</section>
-        <section>期望收獲</section>
+        <section>
+          <div class="text-left">
+            <h4>大綱</h4>
+            <ul>
+              <li>什麼是 redux?</li>
+              <ul>
+                <li>架構</li>
+                <li>範例</li>
+                <li>概念</li>
+              </ul>
+            </ul>
+          </div>
+        </section>
+        <section>️⚠️ 免責聲明 ⚠️</section>
         <section>
           <section>所以什麼是 redux?</section>
           <section>
@@ -44,13 +68,14 @@
           </section>
         </section>
         <section>
+          <div>原始碼</div>
           <img src="https://imgur.com/vzs9XL9.png" alt="">
           <a href="https://github.com/reduxjs/redux/tree/master/src">
             https://github.com/reduxjs/redux/tree/master/src
           </a>
         </section>
         <section>
-          <section  data-transition="slide-in none-out">
+          <section class="code-container" data-transition="slide-in none-out">
             index.js
             <pre><code
               id='src-index'
@@ -68,7 +93,7 @@
             utils
             <img src="https://imgur.com/EEfp3zS.png" alt="">
           </section>
-          <section>
+          <section class="code-container">
             actionTypes.js
             <pre><code
               data-trim
@@ -77,7 +102,7 @@
             >
             </code></pre>
           </section>
-          <section>
+          <section class="code-container">
             isPlainObject.js
             <pre><code
               data-trim
@@ -88,7 +113,18 @@
           </section>
         </section>
         <section>
-          <section>
+          <section class="code-container">
+            compose.js
+            <pre><code
+              data-trim
+              data-line-numbers
+              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/compose.js'
+            >
+            </code></pre>
+          </section>
+        </section>
+        <section>
+          <section class="code-container">
             createStore.js
             <pre><code
               id='createStore'
@@ -104,11 +140,10 @@
             <p class="fragment" data-code='createStore' data-line-numbers='158-216'></p>
             <p class="fragment" data-code='createStore' data-line-numbers='218-240'></p>
             <p class="fragment" data-code='createStore' data-line-numbers='242-279'></p>
-
           </section>
         </section>
         <section>
-          <section>
+          <section class="code-container">
             applyMiddleware.js
             <pre><code
               data-trim
@@ -119,7 +154,7 @@
           </section>
         </section>
         <section>
-          <section>
+          <section class="code-container">
             combineReducers.js
             <pre><code
               id='combineReducers'
@@ -128,15 +163,15 @@
               data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/combineReducers.js'
             >
             </code></pre>
-            <p class="fragment" data-code='createStore' data-line-numbers='115-180'></p>
-            <p class="fragment" data-code='createStore' data-line-numbers='5-15'></p>
-            <p class="fragment" data-code='createStore' data-line-numbers='17-63'></p>
-            <p class="fragment" data-code='createStore' data-line-numbers='65-97'></p>
+            <p class="fragment" data-code='combineReducers' data-line-numbers='115-180'></p>
+            <p class="fragment" data-code='combineReducers' data-line-numbers='5-15'></p>
+            <p class="fragment" data-code='combineReducers' data-line-numbers='17-63'></p>
+            <p class="fragment" data-code='combineReducers' data-line-numbers='65-97'></p>
 
           </section>
         </section>
         <section>
-          <section>
+          <section class="code-container">
             bindActionCreators.js
             <pre><code
               data-trim
