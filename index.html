@@ -29,6 +29,9 @@
 
         line-height: 1.2em;
       }
+      ul > ul > li{
+        font-size: 1.8rem !important;
+      }
     </style>
   </head>
   <body>
@@ -42,14 +45,19 @@
         </section>
         <section>自我介紹</section>
         <section>
+          <h3>大綱</h3>
           <div class="text-left">
-            <h4>大綱</h4>
             <ul>
               <li>什麼是 redux?</li>
               <ul>
-                <li>架構</li>
-                <li>範例</li>
-                <li>概念</li>
+                <li>元件與架構</li>
+                <li>範例程式碼</li>
+                <li>設計概念</li>
+              </ul>
+              <li>redux 原始碼概覽</li>
+              <ul>
+                <li>讀原始碼時的切入點</li>
+                <li>JavaScript 實用技巧</li>
               </ul>
             </ul>
           </div>
@@ -60,8 +68,30 @@
           <section>
             <img src='https://imgur.com/grw7odu.png'/>
           </section>
+          <section data-transition='slide-in none-out'>
+            <div>架構圖</div>
+            <img src='./images/redux-arch.png'/>
+          </section>
+          <section data-transition='none-in none-out'>
+            <div>從 store 取回資料</div>
+            <img src='./images/redux-arch-1.png'/>
+          </section>
+          <section data-transition='none-in slide-out'>
+            <div>更新 store 的資料</div>
+            <img src='./images/redux-arch-2.png'/>
+          </section>
           <section>
-            redux 架構圖
+            <blockquote>
+              <label>App</label>
+              透過
+              <label>dispatch</label>
+              <label>action</label>
+              呼叫
+              <label>reducer</label> 更新
+              <label>store</label>
+              中的
+              <label>state</label>
+            </blockquote>
           </section>
           <section>
             redux example code
