@@ -215,17 +215,17 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/js/reveal.min.js" integrity="sha256-pv4AarTAzSO6lz+bbMPwmV29XMjkzmFOn601b2pWqXE=" crossorigin="anonymous"></script>
     <script>
-      // load all code
-      (function loadCode () {
+      (function setup () {
         const codeElements = Array.from(document.querySelectorAll('code'))
-        codeElements.forEach(element => {
+        // load all code
+        Promise.all(codeElements.map(element => {
           const url = element.getAttribute('data-url')
           const line = {
             from: element.getAttribute('data-line-from'),
             to: element.getAttribute('data-line-to'),
           }
 
-          fetch(url)
+          return fetch(url)
             .then(response => response.text())
             .then(code => {
               if(line.from || line.to){
@@ -235,41 +235,41 @@
               }
               element.innerHTML = code
             })
+        }))
+        .then(() => {
+          Reveal.initialize({
+            history: true,
+            pdfSeparateFragments: true,
+            allottedTime: 30 * 60 * 1000, // 30 minutes
+            defaultTiming: 18, // seconds per slide
+            // - (optional) height of page/time progress bar
+            progressBarHeight: 10,
+            pausedBarColor: '#448aff',
+            fragmentInURL: true,
+            // - (optional) bar color
+            dependencies: [
+              { src: 'plugin/elapsed-time-bar/elapsed-time-bar.js'},
+              { src: 'plugin/highlight/highlight.js', async: true },
+            ]
+          });
+
+          Reveal.addEventListener('fragmentshown', ({ fragment }) => {
+            const code = fragment.getAttribute('data-code')
+            const lineNumbers = fragment.getAttribute('data-line-numbers')
+            if(code){
+              const codeElement = document.getElementById(code)
+              if(codeElement && lineNumbers){
+                codeElement.setAttribute('data-line-numbers', lineNumbers)
+                // reset highlight
+                Array.from(codeElement.querySelectorAll('table tr'))
+                  .forEach(element => element.classList.remove('highlight-line'))
+                RevealHighlight.highlightLines(codeElement, lineNumbers)
+              }
+            }
+          })
         })
+
       })()
-
-      Reveal.addEventListener('fragmentshown', ({ fragment }) => {
-        const code = fragment.getAttribute('data-code')
-        const lineNumbers = fragment.getAttribute('data-line-numbers')
-        if(code){
-          const codeElement = document.getElementById(code)
-          if(codeElement && lineNumbers){
-            codeElement.setAttribute('data-line-numbers', lineNumbers)
-            // reset highlight
-            Array.from(codeElement.querySelectorAll('table tr'))
-              .forEach(element => element.classList.remove('highlight-line'))
-            RevealHighlight.highlightLines(codeElement, lineNumbers)
-          }
-        }
-      })
-
-
-      Reveal.initialize({
-        history: true,
-        pdfSeparateFragments: true,
-        allottedTime: 30 * 60 * 1000, // 30 minutes
-        defaultTiming: 18, // seconds per slide
-        // - (optional) height of page/time progress bar
-        progressBarHeight: 10,
-        pausedBarColor: '#448aff',
-        fragmentInURL: true,
-        // - (optional) bar color
-        dependencies: [
-          { src: 'plugin/elapsed-time-bar/elapsed-time-bar.js'},
-          { src: 'plugin/highlight/highlight.js', async: true },
-        ]
-      });
-
     </script>
   </body>
 </html>
