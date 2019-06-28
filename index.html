@@ -7,12 +7,15 @@
     <title>老司機帶你讀 redux 原始碼</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reveal.min.css" integrity="sha256-OxiHrn+gXudPDHxTvXiQzeFjZU/FllSSPmOOYAZ1O/g=" crossorigin="anonymous" />    <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/league.min.css" integrity="sha256-Alkh+MTa+O0kGOwB3aVd9pTxNB4itQ3QK1fqVuAvAYY=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://revealjs-themes.dzello.com/css/theme/sunblind.css" />
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
 
     <style>
+      .line {
+        background-color: #66bb6a;
+      }
       code { font-size: 1rem; }
       .reveal .progress span {
         background-color: #2979ff;
@@ -31,6 +34,16 @@
       }
       ul > ul > li{
         font-size: 1.8rem !important;
+      }
+      .has-dark-background {
+        color: white;
+      }
+      .architecture{
+        transition: all .3s ease;
+      }
+      .architecture:hover{
+        transform-origin: 50%;
+        transform: scale(1.5);
       }
     </style>
   </head>
@@ -69,38 +82,45 @@
             </ul>
           </div>
         </section>
-        <section>️⚠️ 免責聲明 ⚠️</section>
         <section>
-          <section>所以什麼是 redux?</section>
-          <section>
+          <strong> ️⚠️ 免責聲明 ⚠️</strong>
+        </section>
+        <section data-background-transition="zoom">
+          <section data-background-color="#00796b">
+            <h3>所以什麼是 redux?</h3>
+          </section>
+          <section data-background-color="#00796b">
             <img src='https://imgur.com/grw7odu.png'/>
           </section>
-          <section data-transition='slide-in none-out'>
+          <section data-background-color="#00796b" data-transition='slide-in none-out'>
             <div>架構圖</div>
-            <img src='./images/redux-arch.png'/>
+            <img class='architecture' src='./images/redux-arch.png'/>
           </section>
-          <section data-transition='none-in none-out'>
+          <section data-background-color="#00796b" data-transition='none-in none-out'>
             <div>從 store 取回資料</div>
-            <img src='./images/redux-arch-1.png'/>
+            <img class='architecture' src='./images/redux-arch-1.png'/>
           </section>
-          <section data-transition='none-in slide-out'>
+          <section data-background-color="#00796b" data-transition='none-in slide-out'>
             <div>更新 store 的資料</div>
-            <img src='./images/redux-arch-2.png'/>
+            <img class='architecture' src='./images/redux-arch-2.png'/>
           </section>
           <section>
-            <blockquote>
-              <label>App</label>
-              透過
-              <label>dispatch</label>
-              <label>action</label>
-              呼叫
-              <label>reducer</label> 更新
-              <label>store</label>
-              中的
-              <label>state</label>
-            </blockquote>
+            <h3>
+              <q>
+                <label>App</label>
+                透過
+                <label>dispatch</label>
+                <label>action</label>
+                呼叫
+                <label>reducer</label> 更新
+                <label>store</label>
+                中的
+                <label>state</label>
+              </q>
+            </h3>
           </section>
-          <section class="code-container">
+          <section class="code-container" data-background-color="#00796b">
+            <strong>範例</strong>
             <pre><code
               data-trim
               data-line-numbers
@@ -109,7 +129,7 @@
             </code></pre>
           </section>
         </section>
-        <section>
+        <section data-background-color="#00796b">
           <div>原始碼</div>
           <img src="https://imgur.com/vzs9XL9.png" alt="">
           <a href="https://github.com/reduxjs/redux/tree/master/src">
@@ -117,8 +137,8 @@
           </a>
         </section>
         <section>
-          <section class="code-container" data-transition="slide-in none-out">
-            index.js
+          <section data-background-color="#00796b" class="code-container" data-transition="slide-in none-out">
+            <strong>index.js</strong>
             <pre><code
               id='src-index'
               data-trim
@@ -130,13 +150,13 @@
             <p class="fragment" data-code='src-index' data-line-numbers='1-7,29-36'></p>
           </section>
         </section>
-        <section >
-          <section>
-            utils
+        <section>
+          <section data-background-color="#00796b">
+            <strong>utils</strong>
             <img src="https://imgur.com/EEfp3zS.png" alt="">
           </section>
-          <section class="code-container">
-            actionTypes.js
+          <section data-background-color="#00796b" class="code-container">
+            <strong>actionTypes.js</strong>
             <pre><code
               data-trim
               data-line-numbers
@@ -144,8 +164,8 @@
             >
             </code></pre>
           </section>
-          <section class="code-container">
-            isPlainObject.js
+          <section data-background-color="#00796b" class="code-container">
+            <strong>isPlainObject.js</strong>
             <pre><code
               data-trim
               data-line-numbers
@@ -155,8 +175,8 @@
           </section>
         </section>
         <section>
-          <section class="code-container">
-            compose.js
+          <section data-background-color="#00796b" class="code-container">
+            <strong>compose.js</strong>
             <pre><code
               data-trim
               data-line-numbers
@@ -166,8 +186,8 @@
           </section>
         </section>
         <section>
-          <section class="code-container">
-            createStore.js
+          <section data-background-color="#00796b" class="code-container">
+            <strong>createStore.js</strong>
             <pre><code
               id='createStore'
               data-trim
@@ -185,8 +205,8 @@
           </section>
         </section>
         <section>
-          <section class="code-container">
-            applyMiddleware.js
+          <section data-background-color="#00796b" class="code-container">
+            <strong>applyMiddleware.js</strong>
             <pre><code
               data-trim
               data-line-numbers
@@ -195,35 +215,11 @@
             </code></pre>
           </section>
         </section>
-        <section>
-          <section class="code-container">
-            combineReducers.js
-            <pre><code
-              id='combineReducers'
-              data-trim
-              data-line-numbers
-              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/combineReducers.js'
-            >
-            </code></pre>
-            <p class="fragment" data-code='combineReducers' data-line-numbers='115-180'></p>
-            <p class="fragment" data-code='combineReducers' data-line-numbers='5-15'></p>
-            <p class="fragment" data-code='combineReducers' data-line-numbers='17-63'></p>
-            <p class="fragment" data-code='combineReducers' data-line-numbers='65-97'></p>
-
-          </section>
-        </section>
-        <section>
-          <section class="code-container">
-            bindActionCreators.js
-            <pre><code
-              data-trim
-              data-line-numbers
-              data-url='https://raw.githubusercontent.com/reduxjs/redux/master/src/bindActionCreators.js'
-            >
-            </code></pre>
-          </section>
-        </section>
       </div>
+      <div class="line top"></div>
+      <div class="line bottom"></div>
+      <div class="line left"></div>
+      <div class="line right"></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/js/reveal.min.js" integrity="sha256-pv4AarTAzSO6lz+bbMPwmV29XMjkzmFOn601b2pWqXE=" crossorigin="anonymous"></script>
     <script>
@@ -258,6 +254,7 @@
             progressBarHeight: 10,
             pausedBarColor: '#448aff',
             fragmentInURL: true,
+            margin: 0.2,
             // - (optional) bar color
             dependencies: [
               { src: 'plugin/elapsed-time-bar/elapsed-time-bar.js'},
