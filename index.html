@@ -48,10 +48,38 @@
       q label {
         display: inline-block
       }
+      #to-be-continued{
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        z-index: 10000;
+        background-color: rgba(120, 80, 20, .4);
+      }
+      .hidden {
+        display: none;
+      }
+      #to-be-continued-arrow{
+        position: absolute;
+        bottom: 0px;
+      }
+      .slide-in {
+        animation: slidein 1s ease-out;
+        -webkit-animation: slidein 1s ease-out;
+      }
+
+      @keyframes slidein {
+        from { left: 40%; }
+        to { left: 0; }
+      }
     </style>
   </head>
   <body>
-
+    <div id='to-be-continued' class='hidden'>
+      <img
+        id='to-be-continued-arrow'
+        src="./images/to-be-continued-arrow.png" alt=""
+      >
+    </div>
     <div class="reveal">
       <div class="slides">
         <section>
@@ -251,6 +279,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/js/reveal.min.js" integrity="sha256-pv4AarTAzSO6lz+bbMPwmV29XMjkzmFOn601b2pWqXE=" crossorigin="anonymous"></script>
     <script>
       (function setup () {
+        const roundabout = new Audio('./to-be-continued.mov')
         const codeElements = Array.from(document.querySelectorAll('code'))
         // load all code
         Promise.all(codeElements.map(element => {
@@ -300,6 +329,24 @@
                 Array.from(codeElement.querySelectorAll('table tr'))
                   .forEach(element => element.classList.remove('highlight-line'))
                 RevealHighlight.highlightLines(codeElement, lineNumbers)
+              }
+            }
+          })
+
+          document.addEventListener('keydown', (event) => {
+            // when key 'e' is pressed, force end the presentation
+            const toggleClasses = () => {
+              document.getElementById('to-be-continued').classList.toggle('hidden')
+              document.getElementById('to-be-continued-arrow').classList.toggle('slide-in')
+            }
+            if (event.keyCode === 69) {
+              if(roundabout.paused){
+                roundabout.currentTime = 0
+                roundabout.play()
+                setTimeout(toggleClasses, 4400)
+              } else {
+                roundabout.pause()
+                toggleClasses()
               }
             }
           })
