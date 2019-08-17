@@ -24,7 +24,7 @@
       .text-right { text-align: right; }
       .text-center { text-align: center; }
       .code-container {
-        transform-origin: 50%;
+        transform-origin: 50% 6;
         transform: scale(1.25);
       }
       code {
@@ -39,11 +39,8 @@
         color: white;
       }
       .architecture{
-        transition: all .3s ease;
-      }
-      .architecture:hover{
         transform-origin: 50%;
-        transform: scale(1.5);
+        transform: scale(1.4);
       }
       q label {
         display: inline-block
@@ -133,16 +130,22 @@
             <img src='https://imgur.com/grw7odu.png'/>
           </section>
           <section data-background-color="#00796b" data-transition='slide-in none-out'>
-            <div>架構圖</div>
-            <img class='architecture' src='./images/redux-arch.png'/>
+            <div class="architecture">
+              <div>架構圖</div>
+              <img src='./images/redux-arch.png'/>
+            </div>
           </section>
           <section data-background-color="#00796b" data-transition='none-in none-out'>
-            <div>從 store 取回資料</div>
-            <img class='architecture' src='./images/redux-arch-1.png'/>
+            <div class="architecture">
+              <div>從 store 取回資料</div>
+              <img src='./images/redux-arch-1.png'/>
+            </div>
           </section>
           <section data-background-color="#00796b" data-transition='none-in slide-out'>
-            <div>更新 store 的資料</div>
-            <img class='architecture' src='./images/redux-arch-2.png'/>
+            <div class="architecture">
+              <div>更新 store 的資料</div>
+              <img src='./images/redux-arch-2.png'/>
+            </div>
           </section>
           <section>
             <h3>
